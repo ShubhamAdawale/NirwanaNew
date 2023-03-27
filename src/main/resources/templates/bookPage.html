@@ -264,16 +264,57 @@
 
                 </div>
 
-                <!-- <div class="col-lg-5">
+                <div class="col-lg-5">
+					
                     <div >
 
                     </div>
-                </div> -->
+                </div> 
             </div>
         </div>
     </section>
+     <table>
+        <thead>
+            <tr>
+                <th>adult</th>
+                <th>children</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="payment : ${Payment}">
+                <td th:text="${Payment.adult_price}"></td>
+                <td th:text="${Payment.children_price}"></td>
+               
+            </tr>
+        </tbody>
+    </table>
     <!-- Room Details Section End -->
+ <!--<section class="room-details-section spad">
+        <div class="container">
+            <div class="row d-flex justify-content-center p-4" style="background-color:#9eabd1; border-radius: 20px;">
+                <div class="col-lg-5 ">
+                    <form name="myEnquiry1" 
+                        
+                        action="#" id="myForm"
+                            th:action="@{/camp/bookPage}" method="get"
+                            th:object="${Payment}"
+                        
+                            >
 
+
+                        <div class="elem-group inlined">
+                            <label for="name">Adult</label>
+                            <input type="text" id="adult" th:field="*{F_name}" name="F_name" placeholder="Adult">
+                        </div>
+
+                        <div class="elem-group inlined">
+                            <label for="name">Children</label>
+                            <input type="text" id="name"  th:field="*{L_name}"   name="L_name" placeholder="Last Name">
+                        </div>
+   </div>
+        </div>
+    </section>-->
 
     <!-- Footer Section Begin -->
     <footer class="footer-section">

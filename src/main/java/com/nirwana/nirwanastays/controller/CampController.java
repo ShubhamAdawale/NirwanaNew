@@ -1,5 +1,7 @@
 package com.nirwana.nirwanastays.controller;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;  
+import java.util.Date;  
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,19 +16,32 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nirwana.nirwanastays.model.CustomerDetailsModel;
-
+import com.nirwana.nirwanastays.model.Payment;
 import com.nirwana.nirwanastays.repository.CampRepository;
+import com.nirwana.nirwanastays.repository.CustomerDetailsRepository;
+import com.nirwana.nirwanastays.repository.PaymentRepository;
 import com.nirwana.nirwanastays.service.CampService;
 
 @Controller
 @RequestMapping("/camp")
 @CrossOrigin(value = "${base.url}")
 public class CampController {
+	int a,b;
+	int k,m;
 	@Autowired
 	CampService campservice;
 	@Autowired
 	CampRepository repo;
-
+	@Autowired
+	PaymentRepository payrepo;
+	@Autowired
+	CustomerDetailsRepository custrepo;
+	
+	 @GetMapping("/pay")
+	    public String showpayment(Payment payment) {
+	        
+	        return "pay";
+	    }
 	@PostMapping("/getcount")
 	private String checkAvailability(String checkin, String checkout, int adults, int children) {
 		int capacity = 20;
@@ -113,10 +128,33 @@ public class CampController {
 			@ModelAttribute("customerDetailsModel") CustomerDetailsModel customerDetailsModel, Model model,
 			RedirectAttributes redirect
 
-	) {
+	) throws Throwable {
+		
+		custrepo.save(customerDetailsModel);
+		
 		System.err.println("customerDetailsModel-" + customerDetailsModel);
 		System.err.println("camping+" + camping);
-
+		
+		a=customerDetailsModel.getNumOfAdults();
+		b=customerDetailsModel.getNumOfChildren();
+		
+		
+		
+	String	y=customerDetailsModel.getCheckInDate();
+	String	z=customerDetailsModel.getCheckOutDate();
+		System.out.println(y+""+z);
+		
+Date datein=new SimpleDateFormat("yyyy-MM-dd").parse(y); 
+		
+		Date dateout=new SimpleDateFormat("yyyy-MM-dd").parse(z); 
+		
+		System.out.println(datein.getDay());
+		System.out.println(dateout.getDay()-datein.getDay());
+		
+	//	dateout.getDay();
+		
+		k=dateout.getDay()-datein.getDay();		
+		System.out.println(a+"   "+b);
 		redirect.addFlashAttribute("customerDetailsModel", customerDetailsModel);
 
 		return "redirect:/camp/bookPage";
@@ -124,9 +162,44 @@ public class CampController {
 	}
 
 	@GetMapping("/bookPage")
-	public String getBookPage(Model model) {
+	public String getBookPage(Payment payment) {
 		System.err.println("inside getBookPage method");
-		// model.addAttribute("customerDetailsModel",new CustomerDetailsModel());
+		
+		
+		
+		int c,d,sum,e;
+		
+		
+		
+//		a=customerDetailsModel.getNumOfAdults();
+//		b=customerDetailsModel.getNumOfChildren();
+		
+		
+		payment=payrepo.getpay("2500");
+		String pay=payment.getAdult_price();
+		String gpay=payment.getChildren_price();
+		
+		int i=Integer.parseInt(pay);
+		
+		int j=Integer.parseInt(gpay);
+		payrepo.findAll();
+		
+		c= a * i;
+		
+		d= b * j;
+		
+		sum=c+d;
+		
+		e=k*sum;
+		
+		
+		System.out.println("Adult total price "+c);
+		System.out.println("Children total price "+d);
+		System.out.println("total price "+sum);
+		System.out.println("total price "+e+" for "+k+" days ");
+		
+		System.out.println("payment "+pay  +" gpayvalue " +gpay);
+		
 		return "bookPage";
 	}
 
