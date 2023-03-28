@@ -130,7 +130,8 @@ public class CampController {
 
 	) throws Throwable {
 		
-		custrepo.save(customerDetailsModel);
+		
+		
 		
 		System.err.println("customerDetailsModel-" + customerDetailsModel);
 		System.err.println("camping+" + camping);
@@ -147,6 +148,14 @@ public class CampController {
 Date datein=new SimpleDateFormat("yyyy-MM-dd").parse(y); 
 		
 		Date dateout=new SimpleDateFormat("yyyy-MM-dd").parse(z); 
+		
+		if (dateout.compareTo(datein)>0) {
+			custrepo.save(customerDetailsModel);
+		} else {
+			
+			return "bookPage";
+
+		}
 		
 		System.out.println(datein.getDay());
 		System.out.println(dateout.getDay()-datein.getDay());
