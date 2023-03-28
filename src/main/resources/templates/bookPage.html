@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    xmlns:th="http://www.thymeleaf.org" 
-    lang="en">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -25,13 +23,14 @@
     <link rel="stylesheet" href="../css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="../css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
-   <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
 
     <link rel="icon" type="image/x-icon" href="../img/111.jpg">
 </head>
+
 <body>
     <!-- Page Preloder -->
-    <div id="preloder"  >
+    <div id="preloder">
         <div class="loader"></div>
     </div>
     </div><a href="#" class="vanillatop"></a>
@@ -58,11 +57,12 @@
 
         <nav class="mainmenu mobile-menu">
             <ul>
-                <li><a href="/camp/sites">OUR SITES</a></li>
-                                    <li><a href="/camp/about-us">ABOUT US</a></li>
-                                    <li><a href="/camp/gallery">GALLERY</a></li>
-                                    <li><a href="/camp/blog">BLOG</a></li>
-                                    <li><a href="/camp/contact">CONTACT</a></li>
+                <li class="active"><a href="./index.html">HOME</a></li>
+                <li><a href="./sites.html">OUR SITES</a></li>
+                <li><a href="./about-us.html">ABOUT US</a></li>
+                <li><a href="./gallery.html">GALLERY</a></li>
+                <!-- <li><a href="./blog.html">BLOG</a></li> -->
+                <li><a href="./contact.html">CONTACT</a></li>
             </ul>
         </nav>
 
@@ -96,7 +96,9 @@
                             <div class="top-social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
- <a href="https://www.instagram.com/nirwanastays/" target="_blank"><i class="fa fa-instagram"></i></a>                            </div>
+                                <a href="https://www.instagram.com/nirwanastays/" target="_blank"><i
+                                        class="fa fa-instagram"></i></a>
+                            </div>
                             <a href="./sites.html" class="bk-btn">Booking Now</a>
 
                         </div>
@@ -113,7 +115,7 @@
 
                         <div class="logo">
                             <a href="./index.html">
-                                <img class="logo" src="../img/nirvana-removebgpng.png" alt="">
+                                <img class="logo" src="img/nirvana-removebgpng.png" alt="">
                             </a>
                         </div>
                     </div>
@@ -121,11 +123,12 @@
                         <div class="nav-menu">
                             <nav class="mainmenu">
                                 <ul>
-                                    <li><a href="/camp/sites">OUR SITES</a></li>
-                                    <li><a href="/camp/about-us">ABOUT US</a></li>
-                                    <li><a href="/camp/gallery">GALLERY</a></li>
-                                    <li><a href="/camp/blog">BLOG</a></li>
-                                    <li><a href="/camp/contact">CONTACT</a></li>
+                                    <li class="active"><a href="./index.html">HOME</a></li>
+                                    <li><a href="./sites.html">OUR SITES</a></li>
+                                    <li><a href="./about-us.html">ABOUT US</a></li>
+                                    <li><a href="./gallery.html">GALLERY</a></li>
+                                    <!-- <li><a href="./blog.html">BLOG</a></li> -->
+                                    <li><a href="./contact.html">CONTACT</a></li>
                                 </ul>
                             </nav>
                             <!-- <div class="nav-right search-switch">
@@ -163,62 +166,56 @@
         <div class="container">
             <div class="row d-flex justify-content-center p-4" style="background-color:#9eabd1; border-radius: 20px;">
                 <div class="col-lg-7 text-center">
-                    <form name="myEnquiry1" 
-                        
-                        action="#" id="myForm"
-                            th:action="@{/camp/index}" method="post"
-                            th:object="${customerDetailsModel}"
-                        
-                            >
+                    <form method="POST" type="submit" name="myEnquiry">
 
 
                         <div class="elem-group inlined">
                             <label for="name">First Name</label>
-                            <input type="text" id="name" th:field="*{F_name}" name="F_name" placeholder="First Name"
+                            <input type="text" id="name" name="visitor_fname" placeholder="First Name"
                                 pattern=[A-Z\sa-z]{3,20} required>
                         </div>
 
                         <div class="elem-group inlined">
                             <label for="name">Last Name</label>
-                            <input type="text" id="name"  th:field="*{L_name}"   name="L_name" placeholder="Last Name"
+                            <input type="text" id="name" name="visitor_lname" placeholder="Last Name"
                                 pattern=[A-Z\sa-z]{3,20} required>
                         </div>
 
                         <div class="elem-group inlined">
                             <label for="email">Your E-mail</label>
-                            <input type="email" id="email" th:field="*{email_id}"   name="email_id" placeholder="Your Mail" required>
+                            <input type="email" id="email" name="visitor_email" placeholder="Your Mail" required>
                         </div>
                         <div class="elem-group inlined">
                             <label for="phone">Your Phone</label>
-                            <input type="tel" th:field="*{phone_number}" id="phone" name="phone_number" placeholder="WhatsApp Number"
+                            <input type="tel" id="phone" name="visitor_phone" placeholder="WhatsApp Number"
                                 pattern=(\d{3})-?\s?(\d{3})-?\s?(\d{4}) required>
                         </div>
                         <hr>
                         <div class="elem-group inlined">
                             <label for="adult">Adults</label>
-                            <input type="number" th:field="*{numOfAdults}" id="adult" name="numOfAdults" placeholder="" min="1" required>
+                            <input type="number" id="adult" name="total_adults" placeholder="" min="1" required>
                         </div>
                         <div class="elem-group inlined">
                             <label for="child">Children</label>
-                            <input type="number" th:field="*{numOfChildren}"    id="child" name="numOfChildren" placeholder="" min="0" required>
+                            <input type="number" id="child" name="total_children" placeholder="" min="0" required>
                         </div>
 
                         <div class="elem-group inlined">
                             <label for="adult">Veg Count</label>
-                            <input type="number" id="veg" th:field="*{vegCount}" name="Total_veg" placeholder="" min="1" required>
+                            <input type="number" id="veg" name="Total_veg" placeholder="" min="1" required>
                         </div>
                         <div class="elem-group inlined">
                             <label for="child">Non-Veg Count</label>
-                            <input type="number" id="non-veg" th:field="*{nonvegCount}" name="total_nonveg" placeholder="" min="0" required>
+                            <input type="number" id="non-veg" name="total_nonveg" placeholder="" min="0" required>
                         </div>
 
                         <div class="elem-group inlined">
                             <label for="checkin-date">Check-in Date</label>
-                            <input th:field="*{checkInDate}"  type="date" id="checkInDate" name="checkInDate" required>
+                            <input type="date" id="checkin-date" name="checkin" required>
                         </div>
                         <div class="elem-group inlined">
                             <label for="checkout-date">Check-out Date</label>
-                            <input  th:field="*{checkOutDate}" type="date" id="checkOutDate" name="checkOutDate" required>
+                            <input type="date" id="checkout-date" name="checkout" required>
                         </div>
 
                         <!-- <div class="elem-group">
@@ -240,11 +237,6 @@
                         <!-- <a href="bookPage.html" type="submit" class="button-89">BOOKING NOW</a> -->
                         <a href="" type="submit" class="button-89">BOOK NOW</a>
                     </form>
-                    
-
-
-
-
 
 
 
@@ -264,11 +256,11 @@
 
                 </div>
 
-                <!-- <div class="col-lg-5">
-                    <div >
+                <div class="col-lg-5">
+                    <div>
 
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
     </section>
@@ -293,7 +285,9 @@
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
                                 <!-- <a href="#"><i class="fa fa-tripadvisor"></i></a> -->
- <a href="https://www.instagram.com/nirwanastays/" target="_blank"><i class="fa fa-instagram"></i></a>                                <a href="#"><i class="fa fa-youtube-play"></i></a>
+                                <a href="https://www.instagram.com/nirwanastays/" target="_blank"><i
+                                        class="fa fa-instagram"></i></a> <a href="#"><i
+                                        class="fa fa-youtube-play"></i></a>
                             </div>
                         </div>
                     </div>
@@ -343,17 +337,6 @@
         </div>
     </footer>
     <!-- Footer Section End -->
-
-    <!-- Search model Begin -->
-    <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch"><i class="icon_close"></i></div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
-            </form>
-        </div>
-    </div>
-    <!-- Search model end -->
 
     <!-- Js Plugins -->
     <script src="../js/jquery-3.3.1.min.js"></script>
